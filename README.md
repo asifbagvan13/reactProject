@@ -1,6 +1,9 @@
 # netflix clone landing page
-## to run this project download it and cd react-app and then run command npm i
-## and then run npm run dev
+## to run this project
+- download it
+- cd react-app
+- npm i
+- npm run dev
 
 🎬 Netflix – Landing Page
 
@@ -10,7 +13,7 @@ This is a responsive and visually appealing Netflix Clone landing page built wit
 - 🌐 Fully responsive design
 - ⚛️ Built using React
 - 🎨 Clean and modern layout.
-- 
+
 🛠️ Technologies Used
 - React
 - HTML5
