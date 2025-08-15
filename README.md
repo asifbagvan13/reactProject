@@ -9,16 +9,18 @@ This is a responsive and visually appealing Netflix Clone landing page built wit
 - 📺 Netflix-style UI
 - 🌐 Fully responsive design
 - ⚛️ Built using React
-- 🎨 Clean and modern layout
-screenshot below:
+- 🎨 Clean and modern layout.
+- 
 🛠️ Technologies Used
 - React
 - HTML5
 - tailwindcss
-- Vite (for faster builds)
+- Vite (for faster builds).
 
 
 - 📜 License
 This project is for educational purposes only and is not affiliated with or endorsed by Netflix.
+
+screenshot below:
 
 <img width="1919" height="917" alt="image" src="https://github.com/user-attachments/assets/8ad315c8-2ea3-480b-83b4-b7265b231cc7" />
