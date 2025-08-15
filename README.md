@@ -6,7 +6,7 @@
 - npm run dev
 ## or you can also
 git clone https://github.com/asifbagvan13/reactProject.git
-cd reactProject/react-app
+-cd reactProject/react-app
 npm install
 npm run dev
 
