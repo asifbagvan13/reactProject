@@ -4,6 +4,18 @@
 - cd react-app
 - npm i
 - npm run dev
+## or
+# Clone the repository
+git clone https://github.com/asifbagvan13/reactProject.git
+
+# Navigate into the project directory
+cd reactProject/react-app
+
+# Install project dependencies
+npm install
+
+# Run the development server
+npm run dev
 
 🎬 Netflix – Landing Page
 
