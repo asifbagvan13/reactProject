@@ -12,7 +12,7 @@ git clone https://github.com/asifbagvan13/reactProject.git
 
 🎬 Netflix – Landing Page
 
-This is a responsive and visually appealing Netflix Clone landing page built with React. The project mimics the front page of Netflix, featuring modern UI design, smooth layout, and scalable structure – perfect for portfolio or learning purposes.
+This is a responsive and visually appealing Netflix Clone landing page built with React. The project mimics the front page of Netflix, featuring easy design, smooth layout
 🚀 Features
 - 📺 Netflix-style UI
 - 🌐 Fully responsive design
