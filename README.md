@@ -1,5 +1,5 @@
 # netflix clone landing page 
-screenshot below: 
+
 ## to run this project
 - download it
 - cd react-app
