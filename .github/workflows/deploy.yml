@@ -1,19 +1,18 @@
-name: Build and Deploy React App
+name: Build and Deploy React Apps
 
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  # change if your default branch is different
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     permissions:
-      contents: write   # allow push to gh-pages
+      contents: write  # allows pushing to gh-pages
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -21,16 +20,37 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      # Build react-Project
+      - name: Install dependencies (react-Project)
+        working-directory: react-Project
+        run: npm install
+
+      - name: Build react-Project
+        working-directory: react-Project
+        run: npm run build
+
+      - name: Move react-Project build
+        run: |
+          mkdir -p public/react-Project
+          cp -r react-Project/dist/* public/react-Project/
+
+      # Build react/react-app
+      - name: Install dependencies (react-app)
         working-directory: react/react-app
         run: npm install
 
-      - name: Build project
+      - name: Build react-app
         working-directory: react/react-app
         run: npm run build
 
+      - name: Move react-app build
+        run: |
+          mkdir -p public/react
+          cp -r react/react-app/dist/* public/react/
+
+      # Deploy both projects
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: react/react-app/dist   # ✅ Vite outputs here
+          publish_dir: ./public
