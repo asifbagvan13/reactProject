@@ -1,9 +1,9 @@
-name: Deploy Multiple React Apps
+name: Deploy React App
 
 on:
   push:
     branches:
-      - main   # adjust if your default branch is master
+      - main   # change if your branch is different
 
 jobs:
   build-and-deploy:
@@ -18,32 +18,16 @@ jobs:
         with:
           node-version: 20
 
-      # 🔹 Build first project (react/)
-      - name: Build React Project
-        working-directory: ./react
-        run: |
-          npm install
-          npm run build
-      - run: mv react/build ./react-build
+      - name: Install dependencies
+        working-directory: ./react/react-app
+        run: npm install
 
-      # 🔹 Build second project (otherProject/)
-      - name: Build Other Project
-        working-directory: ./otherProject
-        run: |
-          npm install
-          npm run build
-      - run: mv otherProject/build ./other-build
+      - name: Build project
+        working-directory: ./react/react-app
+        run: npm run build
 
-      # 🔹 Prepare combined folder for deployment
-      - name: Prepare deployment folder
-        run: |
-          mkdir public
-          mv react-build public/react
-          mv other-build public/otherProject
-
-      # 🔹 Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./react/react-app/build
