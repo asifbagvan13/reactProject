@@ -3,7 +3,7 @@ name: Deploy React App
 on:
   push:
     branches:
-      - main  # deploy on push to main branch
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   build-and-deploy:
@@ -18,21 +18,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '20'
 
       # Step 3: Install dependencies
       - name: Install dependencies
         working-directory: ./react/react-app
         run: npm install
 
-      # Step 4: Build the project
+      # Step 4: Build the React app
       - name: Build React app
         working-directory: ./react/react-app
         run: npm run build
 
       # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./react/react-app/dist  # Vite build output folder
+          publish_dir: ./react/react-app/dist
