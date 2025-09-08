@@ -1,15 +1,13 @@
-name: Build and Deploy React Apps
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
-      - main   # change if your default branch is different
+      - main   # or master if your repo uses master
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # allows pushing to gh-pages
 
     steps:
       - name: Checkout repository
@@ -18,47 +16,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
-      # -------------------
-      # Build React-Project
-      # -------------------
-      - name: Install dependencies (React-Project)
-        working-directory: React-Project
+      - name: Install dependencies
         run: npm install
 
-      - name: Build React-Project
-        working-directory: React-Project
+      - name: Build project
         run: npm run build
 
-      - name: Move React-Project build
-        run: |
-          rm -rf public/react-Project || true
-          mkdir -p public/react-Project
-          cp -r React-Project/dist/* public/react-Project/
-
-      # -------------------
-      # Build react-app
-      # -------------------
-      - name: Install dependencies (react-app)
-        working-directory: react/react-app
-        run: npm install
-
-      - name: Build react-app
-        working-directory: react/react-app
-        run: npm run build
-
-      - name: Move react-app build
-        run: |
-          rm -rf public/react || true
-          mkdir -p public/react
-          cp -r react/react-app/dist/* public/react/
-
-      # -------------------
-      # Deploy both to GitHub Pages
-      # -------------------
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./dist   # for Vite
+          force_orphan: true    # ensures no history conflict
