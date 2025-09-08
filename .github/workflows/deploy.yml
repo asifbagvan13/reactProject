@@ -1,32 +1,38 @@
-name: Deploy React App to GitHub Pages
+name: Deploy React App
 
 on:
   push:
     branches:
-      - main   # or master if your repo uses master
+      - main  # deploy on push to main branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
+      # Step 3: Install dependencies
       - name: Install dependencies
+        working-directory: ./react/react-app
         run: npm install
 
-      - name: Build project
+      # Step 4: Build the project
+      - name: Build React app
+        working-directory: ./react/react-app
         run: npm run build
 
-      - name: Deploy to GitHub Pages 🚀
-        uses: peaceiris/actions-gh-pages@v4
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist   # for Vite
-          force_orphan: true    # ensures no history conflict
+          publish_dir: ./react/react-app/dist  # Vite build output folder
